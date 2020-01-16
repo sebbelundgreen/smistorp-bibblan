@@ -1,4 +1,7 @@
 package com.company;
 
-public class Staff {
+public class Staff extends Person {
+    public Staff(String name, String membernum) {
+        super(name, membernum);
+    }
 }
