@@ -4,6 +4,9 @@ import java.util.Scanner;
 
 public class Bibbla {
 
+    private boolean exitBibbla = false;
+
+
     private void mainMenu() {
         Scanner scanner = new Scanner(System.in);
         System.out.println("---- Welcome to Smistorps Bibbla ----");
@@ -38,6 +41,11 @@ public class Bibbla {
                 exitBibbla();
                 break;
         }
+    }
+
+    private void exitBibbla() {
+        System.out.println("Välkommen åter!");
+        exitBibbla = true;
     }
 
 }
