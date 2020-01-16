@@ -48,12 +48,16 @@ public class Bibbla {
         exitBibbla = true;
     }
 
-    private void logIn {
+    private void logIn() {
         System.out.println("Ange användarnamn: ");
         Scanner scanner = new Scanner(System.in);
         String userName = scanner.nextLine();
 
-        if (userName == "staff"){
+        if (userName.equals("staff")) {
+            staffMenu();
+        }
+
+        public void staffMenu(){
             Scanner scanner = new Scanner(System.in);
             System.out.println("Välkommen bibliotekarie till Smistorps bibblas portal. Vad vill du göra?");
             int choice;
@@ -99,7 +103,56 @@ public class Bibbla {
                     break;
             }
         }
+    }
+
+
+        if (userName.equal("renter")) {
+            renterMenu();
+        }
+
+    private void renterMenu() {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Välkommen användare till Smistorps bibblas portal. Vad vill du göra?");
+        int choice;
+
+        while (true) {
+            System.out.println("1. Låna bok " + "\n" +
+                    "2. Lämna tillbaka bok " + "\n" +
+                    "3. Se tillgängliga böcker " + "\n" +
+                    "4. Se utlånade böcker " + "\n");
+
+            try {
+                choice = Integer.parseInt(scanner.nextLine());
+            } catch (Exception e) {
+                System.out.println("Enbart nummer!");
+                continue;
+            }
+
+            if (choice > 0 && choice <= 4) {
+                break;
+            } else {
+                System.out.println("Enbart 1 eller 2, försök igen!");
+            }
+
+        }
+
+        switch (choice) {
+
+            case 1:
+                rentBook();
+                break;
+            case 2:
+                returnBook();
+                break;
+            case 3:
+                seeAvailableBooks();
+                break;
+            case 4:
+                seeRentedBooks();
+                break;
         }
     }
+    }
+}
 
 }
