@@ -1,14 +1,16 @@
 package com.company;
 
-import javax.xml.namespace.QName;
+public abstract class  Person {
 
-public class Person {
-    private String name;
-    private String membernum;
+    String name;
+    int id;
+    String password;
 
-
-    public Person(String name, String membernum) {
+    public Person(String name, int id, String password){
         this.name = name;
-        this.membernum = membernum;
+        this.id = id;
+        this.password = password;
     }
+
 }
+

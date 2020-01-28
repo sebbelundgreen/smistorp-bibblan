@@ -1,158 +1,60 @@
 package com.company;
 
-import java.util.Scanner;
+import java.io.Serializable;
+import java.util.ArrayList;
 
-public class Bibbla {
+public class Bibbla implements Serializable {
+    private ArrayList<Bibliotekarie> bibliotekaries = new ArrayList<Bibliotekarie>();
+    private ArrayList<Kund> kunds = new ArrayList<Kund>();
+    private BooksInSmistorp booksInSmistorp = new BooksInSmistorp();
 
-    private boolean exitBibbla = false;
-
-
-    private void mainMenu() {
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("---- Welcome to Smistorps Bibbla ----");
-        int choice;
-
+    public void meny() {
         while (true) {
-            System.out.println("1. Logga in " + "\n" +
-                    "2. Avbryt " + "\n" +
-                    "3. Exit game " + "\n");
+            System.out.println("Välkommen till Smistorps bibliotek");
+            System.out.println("1. Logga in");
+            System.out.println("2. Skapa konto");
+            System.out.println("3. Avbryt");
+            String alternativ = Inputs.scanner.nextLine();
 
-            try {
-                choice = Integer.parseInt(scanner.nextLine());
-            } catch (Exception e) {
-                System.out.println("Enbart nummer!");
-                continue;
-            }
-
-            if (choice > 0 && choice <= 2) {
-                break;
-            } else {
-                System.out.println("Enbart 1 eller 2, försök igen!");
-            }
-
-        }
-
-        switch (choice) {
-
-            case 1:
-                logIn();
-                break;
-            case 2:
-                exitBibbla();
-                break;
-        }
-    }
-
-    private void exitBibbla() {
-        System.out.println("Välkommen åter!");
-        exitBibbla = true;
-    }
-
-    private void logIn() {
-        System.out.println("Ange användarnamn: ");
-        Scanner scanner = new Scanner(System.in);
-        String userName = scanner.nextLine();
-
-        if (userName.equals("staff")) {
-            staffMenu();
-        }
-
-        public void staffMenu(){
-            Scanner scanner = new Scanner(System.in);
-            System.out.println("Välkommen bibliotekarie till Smistorps bibblas portal. Vad vill du göra?");
-            int choice;
-
-            while (true) {
-                System.out.println("1. Söka efter användare " + "\n" +
-                        "2. Lägga till bok " + "\n" +
-                        "3. Ta bort bok " + "\n" +
-                        "4. Se tillgängliga böcker " + "\n" +
-                        "5. Se utlånade böcker " + "\n");
-
-                try {
-                    choice = Integer.parseInt(scanner.nextLine());
-                } catch (Exception e) {
-                    System.out.println("Enbart nummer!");
-                    continue;
-                }
-
-                if (choice > 0 && choice <= 5) {
+            switch (alternativ) {
+                case "1":
+                    loggaIn();
                     break;
-                } else {
-                    System.out.println("Enbart 1 eller 2, försök igen!");
-                }
-
-            }
-
-            switch (choice) {
-
-                case 1:
-                    searchForUser();
+                case "2":
+                    skapaKonto();
                     break;
-                case 2:
-                    addBook();
-                    break;
-                case 3:
-                    deleteBook();
-                    break;
-                case 4:
-                    seeAvailableBooks();
-                    break;
-                case 5:
-                    seeRentedBooks();
+                case "3":
+                    System.out.println("Välkommen åter!");
+                    return;
+                default:
+                    Inputs.felmeddelande();
                     break;
             }
         }
     }
 
-
-        if (userName.equal("renter")) {
-            renterMenu();
-        }
-
-    private void renterMenu() {
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("Välkommen användare till Smistorps bibblas portal. Vad vill du göra?");
-        int choice;
-
+    private void skapaKonto() {
         while (true) {
-            System.out.println("1. Låna bok " + "\n" +
-                    "2. Lämna tillbaka bok " + "\n" +
-                    "3. Se tillgängliga böcker " + "\n" +
-                    "4. Se utlånade böcker " + "\n");
+            System.out.println("1. Skapa användarkonto");
+            System.out.println("2. Tillbaka");
+            String alternativ = Inputs.scanner.nextLine();
 
-            try {
-                choice = Integer.parseInt(scanner.nextLine());
-            } catch (Exception e) {
-                System.out.println("Enbart nummer!");
-                continue;
+            String användarnamn = "";
+            String lösenord = "";
+            if (alternativ.equals("1")) {
+                användarnamn = Inputs.kontoInputs("användarnamn");
+                lösenord = Inputs.kontoInputs("lösenord");
             }
 
-            if (choice > 0 && choice <= 4) {
-                break;
-            } else {
-                System.out.println("Enbart 1 eller 2, försök igen!");
+            switch (alternativ) {
+                case "1":
+                    kunds.add(new Kund(användarnamn, lösenord));
+                    return;
+                case "2":
+                    return;
             }
-
-        }
-
-        switch (choice) {
-
-            case 1:
-                rentBook();
-                break;
-            case 2:
-                returnBook();
-                break;
-            case 3:
-                seeAvailableBooks();
-                break;
-            case 4:
-                seeRentedBooks();
-                break;
         }
     }
-    }
-}
 
+    
 }
