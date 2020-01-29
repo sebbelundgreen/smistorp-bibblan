@@ -56,5 +56,22 @@ public class Bibbla implements Serializable {
         }
     }
 
-    
+    private void loggaIn() {
+        ArrayList<Konto> kontos = new ArrayList<>();
+        kontos.addAll(users);
+        kontos.addAll(admins);
+        
+        System.out.println("Välj ett konto att logga in med.");
+        for (int i = 0; i < kontos.size(); i++) {
+            System.out.printf("%d, %s %n");
+        }
+        int answer = Inputs.nummerVal(kontos.size());
+        if (answer == -1)
+            return;
+        Konto konto = kontos.get(answer);
+
+    }
+
+
+
 }
